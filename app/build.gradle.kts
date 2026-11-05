@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -51,4 +54,54 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    //Hilt and ksp
+    implementation("com.google.dagger:hilt-android:2.60.1")
+    ksp("com.google.dagger:hilt-android-compiler:2.60.1")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    //Room
+    val room_version = "2.8.5"
+    implementation("androidx.room:room-runtime:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
+    implementation("androidx.room:room-ktx:${room_version}")
+
+    //Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
+
+    //FireBase
+    implementation(platform("com.google.firebase:firebase-bom:35.1.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+
+    //Navigation
+    val nav_version = "2.10.2"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    //Coil
+    implementation("io.coil-kt.coil3:coil-compose:3.6.3")
+
+    //Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-kotlinx-serialization:2.11.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
+
+    //Accompanist
+    implementation("com.google.accompanist:accompanist-permissions:0.37.3")
+
+    //Animations
+    implementation("androidx.compose.animation:animation-android:1.12.1")
+    implementation("androidx.compose.animation:animation-core-android:1.12.1")
+
+    //Viewmodel
+    val lifecycle_version = "2.11.0"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${lifecycle_version}")
+
+    //Datastore
+    implementation("androidx.datastore:datastore-preferences:1.3.0")
+
+    // WorkManager dependency
+    implementation("androidx.work:work-runtime-ktx:2.12.0")
 }
